@@ -1,4 +1,5 @@
 ﻿using AssignmentManagement.Core.Domain;
+using Microsoft.EntityFrameworkCore;
 using Seed.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -55,11 +56,13 @@ namespace AssignmentManagement.Services.Profiles
             if (string.IsNullOrWhiteSpace(identityId))
                 return null;
 
-            var query = from profile in _profileRepository.Table
-                        orderby profile.Id
-                        where profile.IdentityId == identityId
-                        select profile;
-            return query.FirstOrDefault();
+            return _profileRepository.Table
+                .Include(profile => profile.GroupProfiles)
+                .ThenInclude(groupProfile => groupProfile.Group)
+                .Include(profile => profile.Problems)
+                .ThenInclude(problem => problem.ProblemAttachments)
+                .Where(profile => profile.IdentityId == identityId)
+                .FirstOrDefault();
         }
 
         public void InsertProfile(Profile profile)
