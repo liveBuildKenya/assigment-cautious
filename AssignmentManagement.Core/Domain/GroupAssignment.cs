@@ -5,8 +5,10 @@ namespace AssignmentManagement.Core.Domain
 {
     public class GroupAssignment: BaseEntity
     {
-        public string GroupId { get; set; }
-        public string ProblemId { get; set; }
+        public Group Group { get; set; }
+        public Guid GroupId { get; set; }
+        public Guid ProblemId { get; set; }
+        public Problem Problem { get; set; }
         public DateTime SubmissionDeadline { get; set; }
     }
 }

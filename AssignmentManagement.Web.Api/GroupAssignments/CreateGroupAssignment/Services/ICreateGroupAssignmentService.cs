@@ -1,7 +1,7 @@
 ﻿using AssignmentManagement.Core.Domain;
-using AssignmentManagement.Web.Api.CreateGroupAssignment.Models;
+using AssignmentManagement.Web.Api.GroupAssignments.CreateGroupAssignment.Models;
 
-namespace AssignmentManagement.Web.Api.CreateGroupAssignment.Services
+namespace AssignmentManagement.Web.Api.GroupAssignments.CreateGroupAssignment.Services
 {
     public interface ICreateGroupAssignmentService
     {

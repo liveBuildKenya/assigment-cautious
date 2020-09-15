@@ -1,8 +1,9 @@
 ﻿using AssignmentManagement.Core.Domain;
 using AssignmentManagement.Services.GroupAssignments;
+using System;
 using System.Collections.Generic;
 
-namespace AssignmentManagement.Web.Api.GetGroupAssignments.Services
+namespace AssignmentManagement.Web.Api.GroupAssignments.GetGroupAssignments.Services
 {
     public class GetGroupAssignmentServices : IGetGroupAssignmentsService
     {
@@ -25,12 +26,12 @@ namespace AssignmentManagement.Web.Api.GetGroupAssignments.Services
 
         public IList<GroupAssignment> GetGroupAssignmentsByGroupId(string groupId)
         {
-            return _groupAssignmentService.GetGroupAssignmentByGroupId(groupId);
+            return _groupAssignmentService.GetGroupAssignmentByGroupId(new Guid(groupId));
         }
 
         public IList<GroupAssignment> GetGroupAssignmentsByProblemId(string problemId)
         {
-            return _groupAssignmentService.GetGroupAssignmentByProblemId(problemId);
+            return _groupAssignmentService.GetGroupAssignmentByProblemId(new Guid(problemId));
         }
 
         #endregion

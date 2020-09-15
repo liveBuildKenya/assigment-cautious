@@ -19,20 +19,171 @@ namespace AssignmentManagement.Core.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("AssignmentManagement.Core.Domain.Group", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Group");
+                });
+
             modelBuilder.Entity("AssignmentManagement.Core.Domain.GroupAssignment", b =>
                 {
-                    b.Property<string>("ProblemId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("ProblemId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("GroupId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("GroupId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("SubmissionDeadline")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ProblemId", "GroupId");
 
+                    b.HasIndex("GroupId");
+
                     b.ToTable("GroupAssignment");
+                });
+
+            modelBuilder.Entity("AssignmentManagement.Core.Domain.GroupProfile", b =>
+                {
+                    b.Property<Guid>("GroupId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProfileId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
+                    b.HasKey("GroupId", "ProfileId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("GroupProfile");
+                });
+
+            modelBuilder.Entity("AssignmentManagement.Core.Domain.Problem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AuthorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.ToTable("Problem");
+                });
+
+            modelBuilder.Entity("AssignmentManagement.Core.Domain.ProblemAttachment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FileId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ProblemId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProblemId");
+
+                    b.ToTable("ProblemAttachment");
+                });
+
+            modelBuilder.Entity("AssignmentManagement.Core.Domain.Profile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("IdentityId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SystemName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Profile");
+                });
+
+            modelBuilder.Entity("AssignmentManagement.Core.Domain.GroupAssignment", b =>
+                {
+                    b.HasOne("AssignmentManagement.Core.Domain.Group", "Group")
+                        .WithMany()
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AssignmentManagement.Core.Domain.Problem", "Problem")
+                        .WithMany()
+                        .HasForeignKey("ProblemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AssignmentManagement.Core.Domain.GroupProfile", b =>
+                {
+                    b.HasOne("AssignmentManagement.Core.Domain.Group", "Group")
+                        .WithMany("GroupProfiles")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AssignmentManagement.Core.Domain.Profile", "Profile")
+                        .WithMany("GroupProfiles")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AssignmentManagement.Core.Domain.Problem", b =>
+                {
+                    b.HasOne("AssignmentManagement.Core.Domain.Profile", "Author")
+                        .WithMany("Problems")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AssignmentManagement.Core.Domain.ProblemAttachment", b =>
+                {
+                    b.HasOne("AssignmentManagement.Core.Domain.Problem", "Problem")
+                        .WithMany("ProblemAttachments")
+                        .HasForeignKey("ProblemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,5 @@
 ﻿using AssignmentManagement.Core.Domain;
+using System;
 using System.Collections.Generic;
 
 namespace AssignmentManagement.Services.GroupAssignments
@@ -6,8 +7,8 @@ namespace AssignmentManagement.Services.GroupAssignments
     public interface IGroupAssignmentService
     {
         void InsertGroupAssignment(GroupAssignment groupAssignment);
-        GroupAssignment GetGroupAssignmentByGroupIdAndProblemId(string groupId, string problemId);
-        IList<GroupAssignment> GetGroupAssignmentByGroupId(string groupId);
-        IList<GroupAssignment> GetGroupAssignmentByProblemId(string problemId);
+        GroupAssignment GetGroupAssignmentByGroupIdAndProblemId(Guid groupId, Guid problemId);
+        IList<GroupAssignment> GetGroupAssignmentByGroupId(Guid groupId);
+        IList<GroupAssignment> GetGroupAssignmentByProblemId(Guid problemId);
     }
 }

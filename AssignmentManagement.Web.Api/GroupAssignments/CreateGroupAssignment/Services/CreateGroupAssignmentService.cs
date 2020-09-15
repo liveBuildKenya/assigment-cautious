@@ -1,8 +1,9 @@
 ﻿using AssignmentManagement.Core.Domain;
 using AssignmentManagement.Services.GroupAssignments;
-using AssignmentManagement.Web.Api.CreateGroupAssignment.Models;
+using AssignmentManagement.Web.Api.GroupAssignments.CreateGroupAssignment.Models;
+using System;
 
-namespace AssignmentManagement.Web.Api.CreateGroupAssignment.Services
+namespace AssignmentManagement.Web.Api.GroupAssignments.CreateGroupAssignment.Services
 {
     public class CreateGroupAssignmentService: ICreateGroupAssignmentService
     {
@@ -27,8 +28,8 @@ namespace AssignmentManagement.Web.Api.CreateGroupAssignment.Services
         {
             var newGroupAssignment = new GroupAssignment
             {
-                GroupId = createGroupAssignmentViewModel.GroupId,
-                ProblemId = createGroupAssignmentViewModel.ProblemId,
+                GroupId = new Guid(createGroupAssignmentViewModel.GroupId),
+                ProblemId = new Guid(createGroupAssignmentViewModel.ProblemId),
                 SubmissionDeadline = createGroupAssignmentViewModel.SubmissionDeadline
             };
 

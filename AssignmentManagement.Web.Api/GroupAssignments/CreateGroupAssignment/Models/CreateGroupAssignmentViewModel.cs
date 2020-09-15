@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AssignmentManagement.Web.Api.CreateGroupAssignment.Models
+namespace AssignmentManagement.Web.Api.GroupAssignments.CreateGroupAssignment.Models
 {
     public class CreateGroupAssignmentViewModel
     {

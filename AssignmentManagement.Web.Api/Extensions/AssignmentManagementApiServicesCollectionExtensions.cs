@@ -4,8 +4,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Seed.Infrastructure;
 using AssignmentManagement.Services.Extensions;
-using AssignmentManagement.Web.Api.CreateGroupAssignment.Services;
-using AssignmentManagement.Web.Api.GetGroupAssignments.Services;
+using AssignmentManagement.Web.Api.GroupAssignments.CreateGroupAssignment.Services;
+using AssignmentManagement.Web.Api.GroupAssignments.GetGroupAssignments.Services;
+using AssignmentManagement.Web.Api.Groups.CreateGroup.Services;
+using AssignmentManagement.Web.Api.Groups.GetGroups.Services;
+using AssignmentManagement.Web.Api.Problems.CreateProblem.Services;
+using AssignmentManagement.Web.Api.Problems.GetProblems.Services;
+using AssignmentManagement.Web.Api.Profiles.CreateProfile.Services;
+using AssignmentManagement.Web.Api.Profiles.GetProfile.Services;
 
 namespace AssignmentManagement.Web.Api.Extensions
 {
@@ -22,6 +28,12 @@ namespace AssignmentManagement.Web.Api.Extensions
 
             services.AddTransient<ICreateGroupAssignmentService, CreateGroupAssignmentService>();
             services.AddTransient<IGetGroupAssignmentsService, GetGroupAssignmentServices>();
+            services.AddTransient<ICreateGroupService, CreateGroupService>();
+            services.AddTransient<IGetGroupsService, GetGroupsService>();
+            services.AddTransient<ICreateProblemService, CreateProblemService>();
+            services.AddTransient<IGetProblemsService, GetProblemsService>();
+            services.AddTransient<ICreateProfileService, CreateProfileService>();
+            services.AddTransient<IGetProfileService, GetProfileService>();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using AssignmentManagement.Core.Domain;
 using System.Collections.Generic;
 
-namespace AssignmentManagement.Web.Api.GetGroupAssignments.Services
+namespace AssignmentManagement.Web.Api.GroupAssignments.GetGroupAssignments.Services
 {
     public interface IGetGroupAssignmentsService
     {

@@ -33,21 +33,21 @@ namespace AssignmentManagement.Services.GroupAssignments
             _groupAssignmentRepository.Insert(groupAssignment);
         }
 
-        public GroupAssignment GetGroupAssignmentByGroupIdAndProblemId(string groupId, string problemId)
+        public GroupAssignment GetGroupAssignmentByGroupIdAndProblemId(Guid groupId, Guid problemId)
         {
             return _groupAssignmentRepository.Table
                 .Where(groupAssignment => groupAssignment.GroupId == groupId && groupAssignment.ProblemId == problemId)
                 .FirstOrDefault();
         }
 
-        public IList<GroupAssignment> GetGroupAssignmentByGroupId(string groupId)
+        public IList<GroupAssignment> GetGroupAssignmentByGroupId(Guid groupId)
         {
             return _groupAssignmentRepository.Table
                 .Where(groupAssignment => groupAssignment.GroupId == groupId)
                 .ToList();
         }
 
-        public IList<GroupAssignment> GetGroupAssignmentByProblemId(string problemId)
+        public IList<GroupAssignment> GetGroupAssignmentByProblemId(Guid problemId)
         {
             return _groupAssignmentRepository.Table
                 .Where(groupAssignment => groupAssignment.ProblemId == problemId)
