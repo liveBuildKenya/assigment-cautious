@@ -4,8 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Seed.Infrastructure;
 using AssignmentManagement.Services.Extensions;
-using AssignmentManagement.Web.Api.GroupAssignments.CreateGroupAssignment.Services;
-using AssignmentManagement.Web.Api.GroupAssignments.GetGroupAssignments.Services;
 using AssignmentManagement.Web.Api.Groups.CreateGroup.Services;
 using AssignmentManagement.Web.Api.Groups.GetGroups.Services;
 using AssignmentManagement.Web.Api.Problems.CreateProblem.Services;
@@ -26,8 +24,6 @@ namespace AssignmentManagement.Web.Api.Extensions
 
             services.ConfigureAssignmentManagementServiceServices();
 
-            services.AddTransient<ICreateGroupAssignmentService, CreateGroupAssignmentService>();
-            services.AddTransient<IGetGroupAssignmentsService, GetGroupAssignmentServices>();
             services.AddTransient<ICreateGroupService, CreateGroupService>();
             services.AddTransient<IGetGroupsService, GetGroupsService>();
             services.AddTransient<ICreateProblemService, CreateProblemService>();

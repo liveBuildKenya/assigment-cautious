@@ -36,24 +36,6 @@ namespace AssignmentManagement.Core.Migrations
                     b.ToTable("Group");
                 });
 
-            modelBuilder.Entity("AssignmentManagement.Core.Domain.GroupAssignment", b =>
-                {
-                    b.Property<Guid>("ProblemId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("GroupId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("SubmissionDeadline")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ProblemId", "GroupId");
-
-                    b.HasIndex("GroupId");
-
-                    b.ToTable("GroupAssignment");
-                });
-
             modelBuilder.Entity("AssignmentManagement.Core.Domain.GroupProfile", b =>
                 {
                     b.Property<Guid>("GroupId")
@@ -136,21 +118,6 @@ namespace AssignmentManagement.Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Profile");
-                });
-
-            modelBuilder.Entity("AssignmentManagement.Core.Domain.GroupAssignment", b =>
-                {
-                    b.HasOne("AssignmentManagement.Core.Domain.Group", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AssignmentManagement.Core.Domain.Problem", "Problem")
-                        .WithMany()
-                        .HasForeignKey("ProblemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("AssignmentManagement.Core.Domain.GroupProfile", b =>

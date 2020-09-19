@@ -1,5 +1,4 @@
-﻿using AssignmentManagement.Services.GroupAssignments;
-using AssignmentManagement.Services.Groups;
+﻿using AssignmentManagement.Services.Groups;
 using AssignmentManagement.Services.Problems;
 using AssignmentManagement.Services.Profiles;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +9,6 @@ namespace AssignmentManagement.Services.Extensions
     {
         public static void ConfigureAssignmentManagementServiceServices(this IServiceCollection services)
         {
-            services.AddTransient<IGroupAssignmentService, GroupAssignmentService>();
             services.AddTransient<IGroupService, GroupService>();
             services.AddTransient<IProblemService, ProblemService>();
             services.AddTransient<IProfileService, ProfileService>();
