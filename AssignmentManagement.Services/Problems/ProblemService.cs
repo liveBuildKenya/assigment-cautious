@@ -69,6 +69,14 @@ namespace AssignmentManagement.Services.Problems
             _problemRepository.Update(problem);
         }
 
+        public IList<Problem> GetProblemsByIds(IList<Guid> problemIds)
+        {
+            return _problemRepository.Table
+                .Include(problem => problem.ProblemAttachments)
+                .Where(problem => problemIds.Contains(problem.Id))
+                .ToList();
+        }
+
         #endregion
     }
 }

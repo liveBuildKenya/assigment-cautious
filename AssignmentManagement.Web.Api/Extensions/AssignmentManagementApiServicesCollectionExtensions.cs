@@ -10,6 +10,7 @@ using AssignmentManagement.Web.Api.Problems.CreateProblem.Services;
 using AssignmentManagement.Web.Api.Problems.GetProblems.Services;
 using AssignmentManagement.Web.Api.Profiles.CreateProfile.Services;
 using AssignmentManagement.Web.Api.Profiles.GetProfile.Services;
+using AssignmentManagement.Web.Api.Groups.JoinGroup.Services;
 
 namespace AssignmentManagement.Web.Api.Extensions
 {
@@ -26,6 +27,7 @@ namespace AssignmentManagement.Web.Api.Extensions
 
             services.AddTransient<ICreateGroupService, CreateGroupService>();
             services.AddTransient<IGetGroupsService, GetGroupsService>();
+            services.AddTransient<IJoinGroupService, JoinGroupService>();
             services.AddTransient<ICreateProblemService, CreateProblemService>();
             services.AddTransient<IGetProblemsService, GetProblemsService>();
             services.AddTransient<ICreateProfileService, CreateProfileService>();

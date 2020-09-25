@@ -1,5 +1,6 @@
 ﻿using AssignmentManagement.Core.Domain;
 using AssignmentManagement.Services.Problems;
+using AssignmentManagement.Web.Api.Problems.GetProblems.Models;
 using System;
 using System.Collections.Generic;
 
@@ -32,6 +33,11 @@ namespace AssignmentManagement.Web.Api.Problems.GetProblems.Services
         public Problem GetProblemById(string problemId)
         {
             return _problemService.GetProblemById(new Guid(problemId));
+        }
+
+        public IList<Problem> GetProblemsByIds(GetProblemsByIdsViewModel getProblemByIdsViewModel)
+        {
+            return _problemService.GetProblemsByIds(getProblemByIdsViewModel.problemIds);
         }
 
         #endregion

@@ -35,7 +35,7 @@ namespace AssignmentManagement.Core.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //For development
-            optionsBuilder.UseSqlServer("Server=localhost;Database=AssignmentManagement;Trusted_Connection=True");
+            optionsBuilder.UseSqlServer("Server=WORKSPACE_01;Database=AssignmentManagement;Trusted_Connection=True");
 
         }
 

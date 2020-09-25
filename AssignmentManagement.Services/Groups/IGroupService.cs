@@ -13,6 +13,12 @@ namespace AssignmentManagement.Services.Groups
         void InsertGroup(Group group);
 
         /// <summary>
+        /// Update a group
+        /// </summary>
+        /// <param name="group">Group</param>
+        void UpdateGroup(Group group);
+
+        /// <summary>
         /// Gets a group by id
         /// </summary>
         /// <param name="id">Group Id</param>

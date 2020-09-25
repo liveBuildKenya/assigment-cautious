@@ -31,5 +31,6 @@ namespace AssignmentManagement.Services.Problems
         /// <param name="problemId"></param>
         /// <returns>Problem</returns>
         Problem GetProblemById(Guid problemId);
+        IList<Problem> GetProblemsByIds(IList<Guid> problemIds);
     }
 }

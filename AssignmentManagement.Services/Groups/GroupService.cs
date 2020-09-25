@@ -37,6 +37,14 @@ namespace AssignmentManagement.Services.Groups
             _groupRepository.Insert(group);
         }
 
+        public void UpdateGroup(Group group)
+        {
+            if (group == null)
+                throw new ArgumentNullException(nameof(Group));
+
+            _groupRepository.Update(group);
+        }
+
         public Group GetGroupById(Guid id)
         {
             return _groupRepository.Table
